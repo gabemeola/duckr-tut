@@ -1,0 +1,10 @@
+.sass-cache/
+*.css.map
+firebase.json
+.DS_Store
+bundle.js
+.idea
+node_modules
+min-icons/
+build/
+dist/
