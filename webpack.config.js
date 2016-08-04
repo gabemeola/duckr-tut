@@ -1,21 +1,20 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path'),
+	  webpack = require('webpack'),
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-	resolve: {
-		extensions: ["", ".js", ".jsx"]
-	},
+var PATHS = {
+	app: path.join(__dirname, 'app'),
+	build: path.join(__dirname, 'dist')
+};
+
+
+var base = {
 	entry: [
-		'./app/app.js'
+		PATHS.app
 	],
 	output: {
-		path: __dirname + '/dist',
+		path: PATHS.build,
 		filename: 'index_bundle.js'
-	},
-	devtool: 'eval-source-map',
-	devServer: { //Allows webpack-dev-server to be live reloaded
-		inline: true,
-		hot: false,
-		port: 3333
 	},
 	module: {
 		loaders: [
@@ -29,6 +28,22 @@ module.exports = {
 				loader: 'style-loader!css-loader?sourceMap'
 			}
 		]
+	},
+};
+
+var developmentConfig = {};
+
+var productionConfig = {};
+
+module.exports = {
+	resolve: {
+		extensions: ["", ".js", ".jsx"]
+	},
+	devtool: 'eval-source-map',
+	devServer: { //Allows webpack-dev-server to be live reloaded
+		inline: true,
+		hot: false,
+		port: 3333
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
