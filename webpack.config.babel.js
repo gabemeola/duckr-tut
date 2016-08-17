@@ -4,6 +4,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const LAUNCH_COMMAND = process.env.npm_lifecycle_event;
 const isProduction = LAUNCH_COMMAND === 'production';
+process.env.BABEL_ENV = LAUNCH_COMMAND;
+
 const productionPlugin = new webpack.DefinePlugin({
 	'process.env': {
 		NODE_ENV: JSON.stringify('production')
@@ -24,11 +26,6 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 const base = {
 	resolve: {
 		extensions: ["", ".js", ".jsx"]
-	},
-	devServer: { //Allows webpack-dev-server to be live reloaded
-		inline: true,
-		hot: false,
-		port: 3333
 	},
 	entry: [
 		PATHS.app
@@ -54,7 +51,14 @@ const base = {
 
 const developmentConfig = {
 	devtool: 'cheap-module-inline-source-map',
-	plugins: [HtmlWebpackPluginConfig]
+	devServer: {
+		contentBase: PATHS.build,
+		inline: true,
+		hot: true,
+		progress: true,
+		port: 3333
+	},
+	plugins: [HtmlWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
 };
 
 const productionConfig = {

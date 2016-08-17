@@ -4,7 +4,7 @@
   "description": "From Tutorial for react on reactjsprogram.com for REDUX + ImmutableJS",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --host 0.0.0.0",
+    "start": "webpack-dev-server --colors --host 0.0.0.0",
     "production": "webpack -p",
     "lint": "eslint app/.; exit 0",
     "fix": "eslint --fix app/.; exit 0"
@@ -30,6 +30,7 @@
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.23.1",
     "eslint": "^3.2.2",
     "eslint-plugin-promise": "^2.0.0",
