@@ -25,6 +25,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 const base = {
 	resolve: {
+		root: path.resolve("./app"), // Allow Easy non-relative imports
 		extensions: ["", ".js", ".jsx"]
 	},
 	entry: [
@@ -43,7 +44,7 @@ const base = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader?sourceMap'
+				loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'  // Allows CSS-Modules to work correctly
 			}
 		]
 	},
