@@ -2,7 +2,7 @@
   "name": "duckr-tut",
   "version": "1.0.0",
   "description": "From Tutorial for react on reactjsprogram.com for REDUX + ImmutableJS",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --host 0.0.0.0",
     "production": "webpack -p",
