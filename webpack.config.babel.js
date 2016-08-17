@@ -21,7 +21,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 	inject: 'body'
 });
 
-const base = {
+const base = { // Test
 	resolve: {
 		extensions: ["", ".js", ".jsx"]
 	},
