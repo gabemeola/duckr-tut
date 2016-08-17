@@ -3,7 +3,9 @@ import React, { Component } from "react";
 class MainContainer extends Component {
 	render() {
 		return(
-			<p>Hello World</p>
+			<div>
+				{this.props.children}
+			</div>
 		)
 	}
 }
