@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Authenticate } from 'components';
-import auth from '/helpers/auth'
+import auth from 'helpers/auth'
 
 class AuthenticateContainer extends Component {
 	handleAuth() {
@@ -13,7 +13,7 @@ class AuthenticateContainer extends Component {
 			<Authenticate
 				isFetching={false}
 				error=""
-				onAuth={this.handleAuth()}
+				onAuth={() => this.handleAuth()}
 			/>
 		)
 	}
