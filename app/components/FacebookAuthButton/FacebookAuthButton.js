@@ -17,4 +17,4 @@ FacebookAuthButton.propTypes = {
 	isFetching: PropTypes.bool.isRequired
 };
 
-export default FacebookAuthButton
+export default FacebookAuthButton;
