@@ -5,6 +5,7 @@ import users from 'redux/modules/users'
 
 const store = createStore(users);
 console.log(store);
+console.log(store.getState());
 
 ReactDOM.render(
 	routes,

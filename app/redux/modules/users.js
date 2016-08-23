@@ -49,8 +49,28 @@ const initialUserState = {
 	}
 };
 
+function user(state = initialUserState, action) {
+	switch (action.type) {
+		case FETCHING_USER_SUCCESS :
+			return {
+				...state,
+				info: action.user,
+				lastUpdated: action.timestamp
+			};
+		default :
+			return state
+	}
+}
+
+const initialState = {
+	isFetching: false,
+	error: '',
+	isAuthed: false,
+	authedId: ''
+};
+
 // Redux User Reducer
-export default function user(state = initialUserState, action) {
+export default function users(state = initialState, action) {
 	switch (action.type) {
 		case AUTH_USER : // Checks the Action
 			return {
