@@ -1,4 +1,4 @@
-import auth from 'helpers/auth';
+import auth, { logout } from 'helpers/auth';
 
 const AUTH_USER = 'AUTH_USER';
 const UNAUTH_USER = 'UNAUTH_USER';
@@ -50,6 +50,13 @@ export function fetchAndHandleAuthedUser() { // Redux Thunk Action Creator, Lets
 			dispatch(authUser(user.uid));
 			console.log('Authed User', user)
 		}).catch((error) => dispatch(fetchingUserFailure(error)) )
+	}
+}
+
+export function logoutAndUnauth() {
+	return function(dispatch) {
+		logout();
+		dispatch(unauthUser());
 	}
 }
 

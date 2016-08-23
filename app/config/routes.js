@@ -4,7 +4,8 @@ import {
 	MainContainer,
 	HomeContainer,
 	AuthenticateContainer,
-	FeedContainer
+	FeedContainer,
+	LogoutContainer
 } from 'containers';
 
 function getRoutes(checkAuth) {
@@ -14,6 +15,7 @@ function getRoutes(checkAuth) {
 				<IndexRoute component={HomeContainer} onEnter={checkAuth}/>
 				<Route path="auth" component={AuthenticateContainer} onEnter={checkAuth}/>
 				<Route path="feed" component={FeedContainer} onEnter={checkAuth}/>
+				<Route path="logout" component={LogoutContainer}/>
 			</Route>
 		</Router>
 	)
