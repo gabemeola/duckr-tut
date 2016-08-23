@@ -49,9 +49,10 @@ const initialUserState = {
 	}
 };
 
-export default function user(state = initialUserState, action) {  // Redux Reducers
+// Redux User Reducer
+export default function user(state = initialUserState, action) {
 	switch (action.type) {
-		case AUTH_USER :
+		case AUTH_USER : // Checks the Action
 			return {
 				...state,
 				isAuthed: true,
