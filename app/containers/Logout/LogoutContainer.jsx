@@ -7,7 +7,7 @@ class LogoutContainer extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
 
-		dispatch(logoutAndUnauth())
+		dispatch(logoutAndUnauth()); // Not passing as props, but does need dispatch function to be invoked
 	}
 	render() {
 		return (

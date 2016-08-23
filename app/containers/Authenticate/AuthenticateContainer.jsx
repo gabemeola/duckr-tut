@@ -7,6 +7,7 @@ import * as userActionCreators from 'redux/modules/users';
 class AuthenticateContainer extends Component {
 	handleAuth(e) {
 		e.preventDefault();
+		// fetchAndHandleAuthedUser is pass as a prop
 		this.props.fetchAndHandleAuthedUser()  // After Authentication, send to Feed Route
 			.then(() => this.context.router.replace('feed'))
 	}
@@ -42,5 +43,5 @@ const mapStateToProps = (state) => { // Maps Relevant Redux State to component p
 
 export default connect(
 	mapStateToProps,
-	(dispatch) => bindActionCreators(userActionCreators, dispatch) // Bind Action creators to dispatch
+	(dispatch) => bindActionCreators(userActionCreators, dispatch) // Bind Action creators to dispatch and pass as props
 )(AuthenticateContainer);
