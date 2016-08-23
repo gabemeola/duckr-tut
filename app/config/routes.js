@@ -3,7 +3,8 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import {
 	MainContainer,
 	HomeContainer,
-	AuthenticateContainer
+	AuthenticateContainer,
+	FeedContainer
 } from 'containers';
 
 const routes = (
@@ -11,6 +12,7 @@ const routes = (
 		<Route path="/" component={MainContainer}>
 			<IndexRoute component={HomeContainer}/>
 			<Route path="auth" component={AuthenticateContainer}/>
+			<Route path="feed" component={FeedContainer}/>
 		</Route>
 	</Router>
 );
