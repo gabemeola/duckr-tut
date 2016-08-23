@@ -87,6 +87,11 @@ export default function users(state = initialState, action) {
 		case FETCHING_USER :
 			return {
 				...state,
+				isFetching: true,
+			};
+		case FETCHING_USER_FAILURE :
+			return {
+				...state,
 				isFetching: false,
 				error: action.error
 			};
