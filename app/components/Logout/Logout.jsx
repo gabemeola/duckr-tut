@@ -1,8 +1,9 @@
 import React from "react";
+import { text } from './styles.css'
 
 function Logout(props) {
 	return (
-		<div>Logout Component</div>
+		<div className={text}>You are now logged out</div>
 	)
 }
 
