@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import routes from './config/routes';
+import getRoutes from './config/routes';
 import users from 'redux/modules/users';
 
 const store = createStore(users, applyMiddleware(thunk));
-console.log(store.getState());
+
+function checkAuth() {
+	console.warn(arguments);
+}
 
 ReactDOM.render(
 	<Provider store={store}>
-		{routes}
+		{getRoutes(checkAuth)}
 	</Provider>,
 	document.getElementById('app')
 );

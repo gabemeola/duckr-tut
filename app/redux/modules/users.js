@@ -45,7 +45,7 @@ function fetchingUserSuccess(uid, user, timestamp) {
 export function fetchAndHandleAuthedUser() { // Redux Thunk Action Creator, Lets you Dispatch Async Actions
 	return function(dispatch) {
 		dispatch(fetchingUser());
-		auth().then((user) => {
+		return auth().then((user) => {
 			dispatch(fetchingUserSuccess(user.uid, user, Date.now()));
 			dispatch(authUser(user.uid));
 			console.log('Authed User', user)
