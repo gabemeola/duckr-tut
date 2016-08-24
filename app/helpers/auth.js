@@ -11,7 +11,7 @@ export function checkIfAuthed(store) {
 
 export function logout() {
 	console.log("logged out");
-	return firebaseAuth().signout();
+	return firebaseAuth().signOut();
 }
 
 export function saveUser(user) {
