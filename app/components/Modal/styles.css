@@ -27,7 +27,7 @@
 
 .submitDuckBtn {
 	composes: darkBtn;
-	margin: 0 auto;
+	margin: 0px auto;
 	width: 150px;
 	text-align: center;
 	display: block;

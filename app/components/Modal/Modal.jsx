@@ -1,11 +1,11 @@
 import React, { PropTypes } from "react";
-import { default as ReactModal } from 'react-modal';
+import ReactModal from 'react-modal';
 import { newDuckTop, pointer, newDuckInputContainer, newDuckInput, submitDuckBtn, darkBtn } from './styles.css'
 
 const modalStyles = {
 	content: {
 		width: 350,
-		margin: '0 auto',
+		margin: '0px auto',
 		height: 220,
 		borderRadius: 5,
 		background: '#EBEBEB',
