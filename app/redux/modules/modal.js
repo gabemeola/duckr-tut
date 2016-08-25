@@ -25,7 +25,7 @@ export function updateDuckText(newDuckText) {
 	}
 }
 
-export function modal(state = initialState,  action) {
+export default function modal(state = initialState,  action) {
 	switch (action.type) {
 		case OPEN_MODAL :
 			return {

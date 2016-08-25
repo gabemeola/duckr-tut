@@ -33,11 +33,11 @@ AuthenticateContainer.contextTypes = {
 	router: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => { // Maps Relevant Redux State to component props
-	console.log("STATE", state);
+const mapStateToProps = ({users}) => { // Maps Relevant Redux State to component props
+	console.log("USERS STATE", users);
 	return {
-		isFetching: state.isFetching,
-		error: state.error
+		isFetching: users.isFetching,
+		error: users.error
 	}
 };
 
