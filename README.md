@@ -1,2 +1,2 @@
 # duckr-tut
-For Better REDUX + IMMUTABLE.JS implementation in REACT
+Twitter-like project For Better REDUX + IMMUTABLE.JS implementation in REACT
