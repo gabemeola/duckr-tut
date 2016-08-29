@@ -27,3 +27,13 @@ export function saveDuck(duck) {
 		saveLikeCount(duckId)
 	]).then(() => ({...duck, duckId}) )
 }
+
+export function listenToFeed(callback, errCallback) {
+	ref.child('ducks').on('value', (snapshot) => {
+		const feed = snapshot.val() || {};
+		const sortedIds = Object.keys(feed).sort((a, b) => { // Sorting Ids through Firebase feed based on timestamp
+			return feed[b].timestamp - feed[a].timestamp
+		});
+		callback({feed, sortedIds});
+	}, errCallback)
+}

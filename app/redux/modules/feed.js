@@ -1,3 +1,6 @@
+import { addListener } from 'redux/modules/listeners';
+import { listenToFeed } from 'helpers/api';
+
 const SETTING_FEED_LISTENER = 'SETTING_FEED_LISTENER';
 const SETTING_FEED_LISTENER_ERROR = 'SETTING_FEED_LISTENER_ERROR';
 const SETTING_FEED_LISTENER_SUCCESS = 'SETTING_FEED_LISTENER_SUCCESS';
@@ -43,6 +46,19 @@ function addNewDuckIdToFeed(duckId) {
 export function resetNewDucksAvailable() {
 	return {
 		type: RESET_NEW_DUCKS_AVAILABLE
+	}
+}
+
+export function setAndHandleFeedListener() {
+	return function(dispatch, getState) {
+		if (getState().listeners.feed === true) return;  // If Feed Listener is already set then return out of the function
+
+		dispatch(addListener('feed'));
+		dispatch(settingFeedListener());
+
+		listenToFeed(({feed, sortedIds}) => {
+
+		}, (error) => dispatch(settingFeedListenerError(error)))
 	}
 }
 

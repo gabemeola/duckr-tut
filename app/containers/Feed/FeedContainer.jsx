@@ -1,12 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
+import { connect } from 'react-redux';
 import { Feed } from 'components';
 
 class FeedContainer extends Component {
 	render() {
 		return (
-			<Feed/>
+			<Feed
+				newDuckAvailable={this.props.newDucksAvailable}
+			  error={this.props.error}
+			  isFetching={this.props.isFetching}
+			/>
 		)
 	}
 }
 
-export default FeedContainer;
+FeedContainer.propTypes = {
+	newDucksAvailable: PropTypes.bool.isRequired,
+	error: PropTypes.string.isRequired,
+	isFetching: PropTypes.bool.isRequired
+};
+
+function mapStateToProps({feed}) {
+	const { newDucksAvailable, error, isFetching } = feed;
+	return {
+		newDucksAvailable,
+		error,
+		isFetching
+	}
+}
+
+export default connect(
+	mapStateToProps,
+)(FeedContainer);
