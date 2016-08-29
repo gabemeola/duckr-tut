@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import ReactModal from 'react-modal';
+import { formatDuck } from 'helpers/utils';
 import { newDuckTop, pointer, newDuckInputContainer, newDuckInput, submitDuckBtn, darkBtn } from './styles.css'
 
 const modalStyles = {
