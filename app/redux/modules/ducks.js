@@ -54,7 +54,7 @@ export function duckFanout(duck) { // Redux Thunk for adding new ducks
 		const uid = getState().users.authedId;
 		saveDuck(duck)
 			.then((duckWithId) => {
-				dispatch(addDuck(duck));
+				dispatch(addDuck(duckWithId));
 				dispatch(closeModal());
 				dispatch(addSingleUsersDuck(uid, duckWithId.duckId));
 			})

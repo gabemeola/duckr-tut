@@ -17,7 +17,8 @@ const modalStyles = {
 function Modal(props) {
 	function submitDuck() {
 		console.log("Duck: ", props.duckText);
-		console.log("user", props.user)
+		console.log("user", props.user);
+		props.duckFanout(formatDuck(props.duckText, props.user));
 	}
 
 	return (
