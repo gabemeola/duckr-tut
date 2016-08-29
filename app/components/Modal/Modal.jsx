@@ -56,7 +56,8 @@ Modal.propTypes = {
 	isSubmitDisabled: PropTypes.bool.isRequired,
 	openModal: PropTypes.func.isRequired,
 	closeModal: PropTypes.func.isRequired,
-	updateDuckText: PropTypes.func.isRequired
+	updateDuckText: PropTypes.func.isRequired,
+	duckFanout: PropTypes.func.isRequired
 };
 
 export default Modal;
