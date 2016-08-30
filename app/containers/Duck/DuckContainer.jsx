@@ -3,12 +3,28 @@ import { connect } from 'react-redux';
 import { Duck } from 'components';
 
 class DuckContainer extends Component {
+	goToProfile(event) {
+		event.stopPropagation();
+		this.context.router.push('/' + this.props.duck.uid)
+	}
+	handleClick(event) {
+		event.stopPropagation();
+		this.context.router.push('/duckDetail/' + this.props.duck.duckId)
+	}
 	render() {
 		return (
-			<Duck/>
+			<Duck
+				goToProfile={this.goToProfile}
+			  onClick={this.props.hideReplyBtn === true ? null : this.handleClick} // Allow user to click on duck in feed but not in duck detail component view
+				{...this.props} // Pass all Container props to Duck Component
+			/>
 		)
 	}
 }
+
+DuckContainer.contextTypes = {
+	router: PropTypes.object.isRequired
+};
 
 DuckContainer.defaultProps = {
 	hideReplyBtn: false,
