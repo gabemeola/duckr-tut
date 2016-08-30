@@ -94,8 +94,7 @@ export default function ducks(state = initialState, action) {
 		case ADD_MULTIPLE_DUCKS :
 			return {
 				...state,
-				error: '',
-				isFetching: false
+				...action.ducks
 			};
 		default :
 			return state

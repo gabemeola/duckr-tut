@@ -32,7 +32,7 @@ function Feed(props) {
 }
 
 Feed.propTypes = {
-	duckIds: PropTypes.array,
+	duckIds: PropTypes.array.isRequired,
 	error: PropTypes.string.isRequired,
 	isFetching: PropTypes.bool.isRequired,
 	newDucksAvailable: PropTypes.bool.isRequired,

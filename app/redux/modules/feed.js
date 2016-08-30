@@ -13,7 +13,7 @@ const initialState = {
 	newDucksToAdd: [],
 	isFetching: false,
 	error: '',
-	duckId: []
+	duckIds: []
 };
 
 function settingFeedListener() {
@@ -30,10 +30,10 @@ function settingFeedListenerError(error) {
 	}
 }
 
-function settingFeedListenerSuccess(ducksIds) {
+function settingFeedListenerSuccess(duckIds) {
 	return {
 		type: SETTING_FEED_LISTENER_SUCCESS,
-		ducksIds
+		duckIds
 	}
 }
 
@@ -62,7 +62,8 @@ export function setAndHandleFeedListener() {
 			dispatch(addMultipleDucks(feed));
 			initialFetch === true
 				? dispatch(settingFeedListenerSuccess(sortedIds))
-				: dispatch(addNewDuckIdToFeed(sortedIds[0]))
+				: dispatch(addNewDuckIdToFeed(sortedIds[0]));
+					initialFetch = false;
 		}, (error) => dispatch(settingFeedListenerError(error)))
 	}
 }

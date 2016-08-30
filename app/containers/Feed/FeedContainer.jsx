@@ -22,7 +22,7 @@ class FeedContainer extends Component {
 }
 
 FeedContainer.propTypes = {
-	duckIds: PropTypes.array,
+	duckIds: PropTypes.array.isRequired,
 	newDucksAvailable: PropTypes.bool.isRequired,
 	error: PropTypes.string.isRequired,
 	isFetching: PropTypes.bool.isRequired,
