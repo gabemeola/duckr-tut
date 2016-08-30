@@ -5,3 +5,4 @@ export { default as FacebookAuthButton } from './FacebookAuthButton/FacebookAuth
 export { default as Feed } from './Feed/Feed';
 export { default as Logout } from './Logout/Logout';
 export { default as Modal } from './Modal/Modal';
+export { default as Duck } from './Duck/Duck';
