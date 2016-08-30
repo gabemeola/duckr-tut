@@ -31,4 +31,12 @@ function Feed(props) {
 			</div>
 }
 
+Feed.propTypes = {
+	duckIds: PropTypes.array,
+	error: PropTypes.string.isRequired,
+	isFetching: PropTypes.bool.isRequired,
+	newDucksAvailable: PropTypes.bool.isRequired,
+	resetNewDucksAvailable: PropTypes.func.isRequired
+};
+
 export default Feed;

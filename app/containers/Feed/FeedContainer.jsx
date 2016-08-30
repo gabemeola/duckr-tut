@@ -12,10 +12,10 @@ class FeedContainer extends Component {
 		return (
 			<Feed
 				duckIds={this.props.duckIds}
-				newDuckAvailable={this.props.newDucksAvailable}
+				newDucksAvailable={this.props.newDucksAvailable}
 			  error={this.props.error}
 			  isFetching={this.props.isFetching}
-			  resetNewDucksAvailable={this.props.resetNewDucksAvailable}
+				resetNewDucksAvailable={this.props.resetNewDucksAvailable}
 			/>
 		)
 	}
