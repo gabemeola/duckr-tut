@@ -10,4 +10,23 @@ function Duck(props) {
 	)
 }
 
+Duck.propTypes = {
+	duck: PropTypes.shape({
+		avatar: PropTypes.string.isRequired,
+		duckId: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		text: PropTypes.string.isRequired,
+		timestamp: PropTypes.number.isRequired,
+		uid: PropTypes.string.isRequired
+	}),
+	onClick: PropTypes.func,
+	isLiked: PropTypes.bool.isRequired,
+	addAndHandleLike: PropTypes.func.isRequired,
+	handleDeleteLike: PropTypes.func.isRequired,
+	numberOfLikes: PropTypes.number,
+	hideReplyBtn: PropTypes.bool.isRequired,
+	hideLikeCount: PropTypes.bool.isRequired,
+	goToProfile: PropTypes.func.isRequired
+};
+
 export default Duck;
