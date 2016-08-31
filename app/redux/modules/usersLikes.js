@@ -1,3 +1,6 @@
+import { fetchUsersLikes, saveToUSersLikes, deleteFromUsersLikes,
+	incrementNumberOfLikes, decrementNumberOfLikes} from 'helpers/api';
+
 export const ADD_LIKE = 'ADD_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
 const FETCHING_LIKES = 'FETCHING_LIKES';
