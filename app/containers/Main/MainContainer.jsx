@@ -4,6 +4,7 @@ import { Navigation } from "components"
 import { container, innerContainer } from "./styles.css"
 import { bindActionCreators } from 'redux';
 import * as userActionCreators from 'redux/modules/users';
+import * as usersLikesActionCreators from 'redux/modules/usersLikes'
 import { formatUserInfo } from 'helpers/utils';
 import { firebaseAuth } from 'config/constants';
 
@@ -16,6 +17,8 @@ class MainContainer extends Component {
 
 				this.props.authUser(user.uid);
 				this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
+				//this.props.dispatch(setUsersLikes('gabe')); // Cannot use this.props.dispatch and also bindActionCreators concurrently
+				this.props.setUsersLikes(); // Grab Users likes from Firebase
 				if (this.props.location.pathname === '/') {
 					this.context.router.replace('feed');
 				}
@@ -40,7 +43,8 @@ MainContainer.propTypes = {
 	isAuthed: PropTypes.bool.isRequired,
 	authUser: PropTypes.func.isRequired,
 	fetchingUserSuccess: PropTypes.func.isRequired,
-	removeFetchingUser: PropTypes.func.isRequired
+	removeFetchingUser: PropTypes.func.isRequired,
+	setUsersLikes: PropTypes.func.isRequired
 };
 
 MainContainer.contextTypes = {
@@ -49,5 +53,8 @@ MainContainer.contextTypes = {
 
 export default connect(
 	({users}) => ({ isAuthed: users.isAuthed, isFetching: users.isFetching }),
-	(dispatch) => bindActionCreators(userActionCreators, dispatch)
+	(dispatch) => bindActionCreators({
+		...userActionCreators,
+		...usersLikesActionCreators
+	}, dispatch)
 )(MainContainer);

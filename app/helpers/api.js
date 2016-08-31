@@ -39,7 +39,7 @@ export function listenToFeed(callback, errCallback) {
 }
 
 export function fetchUsersLikes(uid) {
-	return ref.child(`usersLikes${uid}`).once('value')
+	return ref.child(`usersLikes/${uid}`).once('value')
 		.then((snapshot) => snapshot.val() || {})
 }
 
