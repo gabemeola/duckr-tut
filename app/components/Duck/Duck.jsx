@@ -8,8 +8,33 @@ import {
 } from './styles.css'
 
 function Duck(props) {
+	const starIcon = props.isLiked === true ? likedIcon : icon;
+	const starFn = props.isLiked === true ? props.handleDeleteLike : props.addAndHandleLike; // Either Delete Like or Add Like depending on previous state
 	return (
-		<div>Duck</div>
+		<div
+			className={duckContainer}
+		  style={{cursor: props.hideReplyBtn === true ? 'default' : 'pointer'}} // Change cursor to pointer if duck is not expanded
+			onClick={props.onClick}
+		>
+			<img src={props.duck.avatar} className={avatar}/>
+			<div className={contentContainer}>
+				<div className={header}>
+					<div onClick={props.goToProfile} className={author}>{props.duck.name}</div>
+					<div>{formatTimestamp(props.duck.timestamp)}</div>
+				</div>
+				<div className={text}>{props.duck.text}</div>
+				<div className={likeReplyContainer}>
+					{props.hideReplyBtn === true
+						? null
+						: <Reply className={icon}/>
+					}
+					<div className={actionContainer}>
+						<Star className={starIcon} onClick={(e) => starFn(props.duck.duckId, e)}/>
+						{props.hideLikeCount === true ? null : <div>{props.numberOfLikes}</div>} {/*Show Number of Likes if duck is expanded*/}
+					</div>
+				</div>
+			</div>
+		</div>
 	)
 }
 
