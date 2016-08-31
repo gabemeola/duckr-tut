@@ -64,6 +64,23 @@ export function addAndHandleLike(duckId, event) {
 	}
 }
 
+export function handleDeleteLike(duckId, event) {
+	event.stopPropagation();
+	return function (dispatch, getState) {
+		// Optimistic Redux Updates
+		dispatch(removeLike(duckId));
+
+		const uid = getState().users.authedId;
+		Promise.all([
+			deleteFromUsersLikes(uid, duckId),
+			decrementNumberOfLikes(duckId)
+		]).catch((error) => {
+			console.warn(error);
+			dispatch(addLike(duckId));
+		})
+	}
+}
+
 export default function usersLikes(state = initialState, action) {
 	const type = action.type;
 	switch (type) {
