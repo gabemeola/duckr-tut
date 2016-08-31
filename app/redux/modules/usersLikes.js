@@ -1,4 +1,4 @@
-import { fetchUsersLikes, saveToUSersLikes, deleteFromUsersLikes,
+import { fetchUsersLikes, saveToUsersLikes, deleteFromUsersLikes,
 	incrementNumberOfLikes, decrementNumberOfLikes} from 'helpers/api';
 
 export const ADD_LIKE = 'ADD_LIKE';
@@ -44,6 +44,23 @@ function fetchingLikesSuccess(likes) {
 	return {
 		type: FETCHING_LIKES_SUCCESS,
 		likes
+	}
+}
+
+export function addAndHandleLike(duckId, event) {
+	event.stopPropagation();
+	return function (dispatch, getState) {
+		// Optimistic Redux Updates
+		dispatch(addLike(duckId)); // Save like to local redux store
+
+		const uid = getState().users.authedId; // Save like to Firebase database
+		Promise.all([
+			saveToUsersLikes(uid, duckId),
+			incrementNumberOfLikes(duckId)
+		]).catch((error) => {
+			console.warn(error);
+			dispatch(removeLike(duckId)); // If there is a error saving to Firebase remove like count on Redux Store
+		})
 	}
 }
 

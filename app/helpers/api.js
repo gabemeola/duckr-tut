@@ -43,7 +43,7 @@ export function fetchUsersLikes(uid) {
 		.then((snapshot) => snapshot.val() || {})
 }
 
-export function saveToUSersLikes(uid, duckId) {
+export function saveToUsersLikes(uid, duckId) {
 	return ref.child(`usersLikes/${uid}/${duckId}`).set(true)
 }
 
