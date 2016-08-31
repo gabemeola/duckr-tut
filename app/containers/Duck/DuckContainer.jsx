@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from "react";
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Duck } from 'components';
+import * as usersLikesActions from 'redux/modules/usersLikes';
 
 class DuckContainer extends Component {
 	goToProfile(event) {
@@ -41,7 +43,7 @@ DuckContainer.propTypes = {
 	addAndHandleLike: PropTypes.func.isRequired
 };
 
-function mapStateToProps({ducks, likeCount, usersLikes}, props) { // Second Argument Received is component's props
+function mapStateToProps({ducks, likeCount, usersLikes}, props) { // Second Argument Received is component's own props
 	return {
 		duck: ducks[props.duckId],
 		hideLikeCount: props.hideLikeCount,
@@ -52,5 +54,6 @@ function mapStateToProps({ducks, likeCount, usersLikes}, props) { // Second Argu
 }
 
 export default connect(
-	mapStateToProps
+	mapStateToProps,
+	(dispatch) => bindActionCreators(usersLikesActions, dispatch)
 )(DuckContainer);
