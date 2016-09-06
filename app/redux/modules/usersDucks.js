@@ -44,6 +44,7 @@ export function addSingleUsersDuck(uid, duckId) {
 }
 
 export function fetchAndHandleUsersDucks(uid) {
+	console.log('fetchAndHandleUsersDucks ran!');
 	return function(dispatch) {
 		dispatch(fetchingUsersDucks());
 
@@ -97,7 +98,7 @@ export default function userDucks(state = initialState, action) {
 				error: '',
 				[action.uid]: {
 					lastUpdated: action.lastUpdated,
-					ducksIds: action.ducksIds
+					duckIds: action.duckIds
 				}
 			};
 		case ADD_SINGLE_USERS_DUCKS :

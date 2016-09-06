@@ -59,6 +59,7 @@ export function fetchingUserSuccess(uid, user, timestamp) {
 }
 
 export function fetchAndHandleUser(uid) {
+	console.log('fetchAndHandleUser Ran!');
 	return function(dispatch) {
 		dispatch(fetchingUser());
 		return fetchUser(uid)
