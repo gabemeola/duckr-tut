@@ -6,7 +6,6 @@ import { subHeader, darkBtn, errorMsg } from 'sharedStyles/styles.css';
 import { DuckContainer } from 'containers';
 
 function DuckDetails({duckId, isFetching, authedUser, error}) {
-	console.log(duckId);
 	return(
 		<div>
 			{isFetching === true
