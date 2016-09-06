@@ -16,8 +16,8 @@ class DuckContainer extends Component {
 	render() {
 		return (
 			<Duck
-				goToProfile={this.goToProfile}
-			  onClick={this.props.hideReplyBtn === true ? null : this.handleClick} // Allow user to click on duck in feed but not in duck detail component view
+				goToProfile={(e) => this.goToProfile(e)}
+			  onClick={this.props.hideReplyBtn === true ? null : (e) => this.handleClick(e)} // Allow user to click on duck in feed but not in duck detail component view
 				{...this.props} // Pass all Container props to Duck Component
 			/>
 		)
