@@ -8,9 +8,9 @@ class DuckDetailsContainer extends Component {
 	componentDidMount() {
 		if (this.props.duckAlreadyFetched === false) {
 			// fetch duck and save to store
-			console.log('still fetching');
+			this.props.fetchAndHandleDuck(this.props.duckId)
 		} else {
-			console.log('remove fetching');
+			// Set is Fetching to False if we already have the duck in our store
 			this.props.removeFetching()
 		}
 	}
