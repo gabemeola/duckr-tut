@@ -29,7 +29,7 @@ function fetchingDuckSuccess(duck) {
 	}
 }
 
-function removeFetching() {
+export function removeFetching() {
 	return {
 		type: REMOVE_FETCHING
 	}
