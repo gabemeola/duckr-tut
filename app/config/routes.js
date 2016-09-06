@@ -18,8 +18,8 @@ function getRoutes(checkAuth) {
 				<Route path="auth" component={AuthenticateContainer} onEnter={checkAuth}/>
 				<Route path="feed" component={FeedContainer} onEnter={checkAuth}/>
 				<Route path="logout" component={LogoutContainer}/>
-				<Route path="/:uid" component={UserContainer}/>
-				<Route path="/duckDetail/:duck" component={DuckDetailsContainer}/>
+				<Route path="/:uid" component={UserContainer} onEnter={checkAuth}/>
+				<Route path="/duckDetail/:duckId" component={DuckDetailsContainer} onEnter={checkAuth}/>
 			</Route>
 		</Router>
 	)
