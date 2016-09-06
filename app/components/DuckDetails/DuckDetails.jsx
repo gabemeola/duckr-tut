@@ -4,8 +4,33 @@ import {
 	replyTextAreaContainer, replyTextArea } from './styles.css';
 import { subHeader, darkBtn, errorMsg } from 'sharedStyles/styles.css';
 import { DuckContainer } from 'containers';
+import { formatReply } from 'helpers/utils';
 
-function DuckDetails({duckId, isFetching, authedUser, error}) {
+function Reply({submit}) {
+	function handleSubmit(e) {
+		if(Reply.ref.value.length === 0) return; // If length is Zero do nothing
+
+		submit(Reply.ref.value, e);
+		Reply.ref.value = '';
+	}
+
+	return(
+		<div className={replyTextAreaContainer}>
+			<textarea
+				ref={(text) => Reply.ref = text} // Allow use to capture the textarea input and stick it on the Reply function
+				className={replyTextArea}
+			  maxLength={140}
+			  placeholder="Your response"
+			  type="text"
+			/>
+			<button onClick={() => handleSubmit()} className={darkBtn}>
+				Submit
+			</button>
+		</div>
+	)
+}
+
+function DuckDetails({duckId, isFetching, authedUser, error, addAndHandleReply}) {
 	return(
 		<div>
 			{isFetching === true
@@ -13,7 +38,7 @@ function DuckDetails({duckId, isFetching, authedUser, error}) {
 				: <div className={container}>
 						<div className={content}>
 							<DuckContainer duckId={duckId} hideLikeCount={false} hideReplyBtn={true}/>
-							MAKE REPLY
+							<Reply submit={(replyText) => addAndHandleReply(duckId, formatReply(authedUser, replyText))}/>
 						</div>
 						<div className={repliesContainer}>
 							REPLY SECTION
@@ -29,7 +54,8 @@ DuckDetails.propTypes = {
 	authedUser: PropTypes.object.isRequired,
 	duckId: PropTypes.string.isRequired,
 	isFetching: PropTypes.bool.isRequired,
-	error: PropTypes.string.isRequired
+	error: PropTypes.string.isRequired,
+	addAndHandleReply: PropTypes.func.isRequired
 };
 
 export default DuckDetails;

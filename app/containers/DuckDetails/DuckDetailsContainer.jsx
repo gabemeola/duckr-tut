@@ -20,6 +20,7 @@ class DuckDetailsContainer extends Component {
 	render() {
 		return(
 			<DuckDetails
+				addAndHandleReply={(duckId, reply) => console.log(duckId, reply)}
 				authedUser={this.props.authedUser}
 			  duckId={this.props.duckId}
 			  error={this.props.error}

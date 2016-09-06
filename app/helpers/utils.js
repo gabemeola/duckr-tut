@@ -23,6 +23,16 @@ export function formatTimestamp(timestamp) {
 	return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
 }
 
+export function formatReply({name, uid, avatar}, reply) {
+	return {
+		name,
+		reply,
+		uid,
+		avatar,
+		timestamp: Date.now()
+	}
+}
+
 function getMilliseconds(timestamp) {
 	return new Date().getTime() - new Date(timestamp).getTime()
 }
