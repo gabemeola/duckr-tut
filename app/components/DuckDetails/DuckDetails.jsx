@@ -6,12 +6,12 @@ import { subHeader, darkBtn, errorMsg } from 'sharedStyles/styles.css';
 import { DuckContainer } from 'containers';
 import { formatReply } from 'helpers/utils';
 
-function Reply({submit}) {
+function Reply({submit}) { // Private stateless Component
 	function handleSubmit(e) {
 		if(Reply.ref.value.length === 0) return; // If length is Zero do nothing
 
 		submit(Reply.ref.value, e);
-		Reply.ref.value = '';
+		Reply.ref.value = ''; // Resets text to an empty string
 	}
 
 	return(
