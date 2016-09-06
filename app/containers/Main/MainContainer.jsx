@@ -15,8 +15,8 @@ class MainContainer extends Component {
 				const userData = user.providerData[0];
 				const userInfo = formatUserInfo(userData.displayName, userData.photoURL, userData.uid);
 
-				this.props.authUser(user.uid);
-				this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
+				this.props.authUser(userData.uid);
+				this.props.fetchingUserSuccess(userData.uid, userInfo, Date.now());
 				//this.props.dispatch(setUsersLikes('gabe')); // Cannot use this.props.dispatch and also bindActionCreators concurrently
 				this.props.setUsersLikes(); // Grab Users likes from Firebase
 				if (this.props.location.pathname === '/') {

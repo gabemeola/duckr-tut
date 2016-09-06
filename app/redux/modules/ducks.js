@@ -50,6 +50,7 @@ export function addMultipleDucks(ducks) {
 }
 
 export function duckFanout(duck) { // Redux Thunk for adding new ducks
+	console.log(duck);
 	return function(dispatch, getState) {
 		const uid = getState().users.authedId;
 		saveDuck(duck)

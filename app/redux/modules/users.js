@@ -50,6 +50,7 @@ export function removeFetchingUser() {
 }
 
 export function fetchingUserSuccess(uid, user, timestamp) {
+	console.log(uid);
 	return {
 		type: FETCHING_USER_SUCCESS,
 		uid,
@@ -75,7 +76,7 @@ export function fetchAndHandleAuthedUser() { // Redux Thunk Action Creator, Lets
 			const userData = user.providerData[0];
 			const userInfo = formatUserInfo(userData.displayName, userData.photoURL, userData.uid);
 
-			return dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()));
+			return dispatch(fetchingUserSuccess(userData.uid, userInfo, Date.now()));
 		})
 			.then(({user}) => saveUser(user))
 			.then((user) => dispatch(authUser(user.uid)))
