@@ -44,7 +44,6 @@ export function addSingleUsersDuck(uid, duckId) {
 }
 
 export function fetchAndHandleUsersDucks(uid) {
-	console.log('fetchAndHandleUsersDucks ran!');
 	return function(dispatch) {
 		dispatch(fetchingUsersDucks());
 

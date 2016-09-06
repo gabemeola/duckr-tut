@@ -1,29 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { User } from 'components';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as usersActionCreators from 'redux/modules/users';
-//import { fetchAndHandleUser} from 'redux/modules/users';
-import * as usersDucksActionCreators from 'redux/modules/usersDucks';
-//import { fetchAndHandleUsersDucks } from 'redux/modules/usersDucks';
+import { fetchAndHandleUser} from 'redux/modules/users';
+import { fetchAndHandleUsersDucks } from 'redux/modules/usersDucks';
 import { staleUser, staleDucks } from 'helpers/utils';
 
 class UserContainer extends Component {
 	componentDidMount() {
-		console.log('component did mount');
 		const { uid } = this.props.routeParams;
 		const { dispatch, lastUpdatedUser, lastUpdatedDucks } = this.props;
 
 		if(this.props.noUser === true || staleUser(lastUpdatedUser)) {
-			this.props.fetchAndHandleUser(uid)
+			dispatch(fetchAndHandleUser(uid))
 		}
 
 		if(this.props.noUser === true || staleDucks(lastUpdatedDucks)) {
-			this.props.fetchAndHandleUsersDucks(uid)
+			dispatch(fetchAndHandleUsersDucks(uid))
 		}
 	}
 	render() {
-		console.log(this.props);
 		return(
 			<User
 				noUser={this.props.noUser}
@@ -44,14 +39,11 @@ UserContainer.propTypes = {
 	duckIds: PropTypes.array.isRequired,
 	routeParams: PropTypes.shape({uid: PropTypes.string.isRequired}),
 	lastUpdatedUser: PropTypes.number.isRequired,
-	lastUpdatedDucks: PropTypes.number.isRequired,
-	fetchAndHandleUsersDucks: PropTypes.func.isRequired,
-	fetchAndHandleUser: PropTypes.func.isRequired,
+	lastUpdatedDucks: PropTypes.number.isRequired
 };
 
 function mapStateToProps({users, usersDucks}, props) {
 	const specificUsersDucks = usersDucks[props.routeParams.uid];
-	console.warn(specificUsersDucks);
 	const user = users[props.routeParams.uid];
 	const noUser = typeof user === 'undefined';
 	const name = noUser ? '' : user.info.name;
@@ -67,9 +59,5 @@ function mapStateToProps({users, usersDucks}, props) {
 }
 
 export default connect(
-	mapStateToProps,
-	(dispatch) => bindActionCreators({
-		...usersActionCreators,
-		...usersDucksActionCreators
-	}, dispatch)
+	mapStateToProps
 )(UserContainer)
