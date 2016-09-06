@@ -7,3 +7,4 @@ export { default as Logout } from './Logout/Logout';
 export { default as Modal } from './Modal/Modal';
 export { default as Duck } from './Duck/Duck';
 export { default as User } from './User/User';
+export { default as DuckDetails } from './DuckDetails/DuckDetails';

@@ -6,3 +6,4 @@ export { default as LogoutContainer } from './Logout/LogoutContainer';
 export { default as ModalContainer } from './Modal/ModalContainer';
 export { default as DuckContainer } from './Duck/DuckContainer';
 export { default as UserContainer } from './User/UserContainer';
+export { default as DuckDetailsContainer } from './DuckDetails/DuckDetailsContainer';
