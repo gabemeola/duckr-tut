@@ -26,10 +26,11 @@ function Duck(props) {
 				<div className={likeReplyContainer}>
 					{props.hideReplyBtn === true
 						? null
-						: <Reply className={icon}/>
+						: <Reply className={icon} style={{marginRight: '15px'}} />
 					}
 					<div className={actionContainer}>
 						<Star className={starIcon} onClick={(e) => starFn(props.duck.duckId, e)}/>
+						&nbsp;
 						{props.hideLikeCount === true ? null : <div>{props.numberOfLikes}</div>} {/*Show Number of Likes if duck is expanded*/}
 					</div>
 				</div>
