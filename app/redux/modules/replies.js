@@ -59,7 +59,6 @@ function fetchingRepliesSuccess (duckId, replies) {
 }
 
 export function addAndHandleReply(duckId, reply) {
-	console.log('new thing', duckId, reply);
 	return function(dispatch) {
 		const { replyWithId, replyPromise } = postReply(duckId, reply);
 
