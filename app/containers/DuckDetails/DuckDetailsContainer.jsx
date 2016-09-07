@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { DuckDetails } from 'components';
 import { fetchAndHandleDuck, removeFetching } from 'redux/modules/ducks';
 import { initLikeFetch } from 'redux/modules/likeCount';
+import { addAndHandleReply } from 'redux/modules/replies';
 
 class DuckDetailsContainer extends Component {
 	componentDidMount() {
@@ -20,7 +21,7 @@ class DuckDetailsContainer extends Component {
 	render() {
 		return(
 			<DuckDetails
-				addAndHandleReply={(duckId, reply) => console.log(duckId, reply)}
+				addAndHandleReply={(duckId, reply) => this.props.dispatch(addAndHandleReply(duckId, reply))}
 				authedUser={this.props.authedUser}
 			  duckId={this.props.duckId}
 			  error={this.props.error}

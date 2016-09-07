@@ -1,3 +1,5 @@
+import { postReply } from 'helpers/api';
+
 const FETCHING_REPLIES = 'FETCHING_REPLIES';
 const FETCHING_REPLIES_ERROR = 'FETCHING_REPLIES_ERROR';
 const FETCHING_REPLIES_SUCCESS = 'FETCHING_REPLIES_SUCCESS';
@@ -56,6 +58,19 @@ function fetchingRepliesSuccess (duckId, replies) {
 	}
 }
 
+export function addAndHandleReply(duckId, reply) {
+	console.log('new thing', duckId, reply);
+	return function(dispatch) {
+		const { replyWithId, replyPromise } = postReply(duckId, reply);
+
+		dispatch(addReply(duckId, replyWithId));
+		replyPromise.catch((error) => {
+			dispatch(removeReply(duckId, replyWithId.replyId));
+			dispatch(addReplyError(error));
+		})
+	}
+}
+
 const initialReply = {
 	name: '',
 	reply: '',
@@ -82,7 +97,7 @@ function duckReplies (state = initialReply, action) {
 	}
 }
 
-function repliesAndLastUpated (state = initialDuckState, action) {
+function repliesAndLastUpdated (state = initialDuckState, action) {
 	switch (action.type) {
 		case FETCHING_REPLIES_SUCCESS :
 			return {
@@ -127,7 +142,7 @@ export default function replies (state = initialState, action) {
 				...state,
 				isFetching: false,
 				error: '',
-				[action.duckId]: repliesAndLastUpated(state[action.duckId], action),
+				[action.duckId]: repliesAndLastUpdated(state[action.duckId], action),
 			};
 		default :
 			return state
