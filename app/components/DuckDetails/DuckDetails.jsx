@@ -3,7 +3,7 @@ import {
 	mainContainer, container, content, repliesContainer,
 	replyTextAreaContainer, replyTextArea } from './styles.css';
 import { subHeader, darkBtn, errorMsg } from 'sharedStyles/styles.css';
-import { DuckContainer } from 'containers';
+import { DuckContainer, RepliesContainer } from 'containers';
 import { formatReply } from 'helpers/utils';
 
 function Reply({submit}) { // Private stateless Component
@@ -30,7 +30,7 @@ function Reply({submit}) { // Private stateless Component
 	)
 }
 
-function DuckDetails({duckId, isFetching, authedUser, error, addAndHandleReply}) {
+export default function DuckDetails({duckId, isFetching, authedUser, error, addAndHandleReply}) {
 	return(
 		<div>
 			{isFetching === true
@@ -41,7 +41,7 @@ function DuckDetails({duckId, isFetching, authedUser, error, addAndHandleReply})
 							<Reply submit={(replyText) => addAndHandleReply(duckId, formatReply(authedUser, replyText))}/>
 						</div>
 						<div className={repliesContainer}>
-							REPLY SECTION
+							<RepliesContainer duckId={duckId} />
 						</div>
 					</div>
 			}
@@ -57,5 +57,3 @@ DuckDetails.propTypes = {
 	error: PropTypes.string.isRequired,
 	addAndHandleReply: PropTypes.func.isRequired
 };
-
-export default DuckDetails;
