@@ -6,3 +6,4 @@ export { default as feed } from './feed';
 export { default as listeners } from './listeners';
 export { default as usersLikes } from './usersLikes';
 export { default as likeCount } from './likeCount';
+export { default as replies } from './replies';
