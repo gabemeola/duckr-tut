@@ -2,10 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Replies } from 'components';
 import { fetchAndHandleReplies } from 'redux/modules/replies';
+import { staleReplies } from 'helpers/utils';
 
 class RepliesContainer extends Component {
 	componentDidMount() {
-		this.props.dispatch(fetchAndHandleReplies(this.props.duckId));
+		const { dispatch, duckId, lastUpdated } = this.props;
+		
+		if(staleReplies(lastUpdated)) {
+			dispatch(fetchAndHandleReplies(duckId));
+		}
 	}
 	render() {
 		return (
