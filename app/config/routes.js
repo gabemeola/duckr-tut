@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import {
 	MainContainer,
 	HomeContainer,
@@ -10,9 +10,9 @@ import {
 	DuckDetailsContainer
 } from 'containers';
 
-function getRoutes(checkAuth) {
+function getRoutes(checkAuth, history) {
 	return (
-		<Router history={hashHistory}>
+		<Router history={history}>
 			<Route path="/" component={MainContainer}>
 				<IndexRoute component={HomeContainer} onEnter={checkAuth}/>
 				<Route path="auth" component={AuthenticateContainer} onEnter={checkAuth}/>
