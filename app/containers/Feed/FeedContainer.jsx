@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Feed } from 'components';
 import * as feedActionCreators from 'redux/modules/feed';
+import { List } from 'immutable';
 
 class FeedContainer extends Component {
 	componentDidMount() {
@@ -22,7 +23,7 @@ class FeedContainer extends Component {
 }
 
 FeedContainer.propTypes = {
-	duckIds: PropTypes.array.isRequired,
+	duckIds: PropTypes.instanceOf(List),
 	newDucksAvailable: PropTypes.bool.isRequired,
 	error: PropTypes.string.isRequired,
 	isFetching: PropTypes.bool.isRequired,
@@ -31,12 +32,11 @@ FeedContainer.propTypes = {
 };
 
 function mapStateToProps({feed}) {
-	const { newDucksAvailable, error, isFetching, duckIds } = feed;
 	return {
-		newDucksAvailable,
-		error,
-		isFetching,
-		duckIds
+		newDucksAvailable: feed.get('newDucksAvailable'),
+		error: feed.get('error'),
+		isFetching: feed.get('isFetching'),
+		duckIds: feed.get('duckIds')
 	}
 }
 

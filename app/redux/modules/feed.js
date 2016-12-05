@@ -1,6 +1,7 @@
 import { addListener } from 'redux/modules/listeners';
 import { listenToFeed } from 'helpers/api';
 import { addMultipleDucks } from "./ducks";
+import { List, fromJS } from 'immutable';
 
 const SETTING_FEED_LISTENER = 'SETTING_FEED_LISTENER';
 const SETTING_FEED_LISTENER_ERROR = 'SETTING_FEED_LISTENER_ERROR';
@@ -8,13 +9,13 @@ const SETTING_FEED_LISTENER_SUCCESS = 'SETTING_FEED_LISTENER_SUCCESS';
 const ADD_NEW_DUCK_ID_TO_FEED = 'ADD_NEW_DUCK_ID_TO_FEED';
 const RESET_NEW_DUCKS_AVAILABLE = 'RESET_NEW_DUCKS_AVAILABLE';
 
-const initialState = {
+const initialState = fromJS({ // Iterates through Object and Convert to Relevant ImmutableJS Collection. E.G. Array [] is now List()
 	newDucksAvailable: false,
 	newDucksToAdd: [],
 	isFetching: false,
 	error: '',
 	duckIds: []
-};
+});
 
 function settingFeedListener() {
 	return {
@@ -71,37 +72,32 @@ export function setAndHandleFeedListener() {
 export default function feed(state = initialState, action) {
 	switch (action.type) {
 		case SETTING_FEED_LISTENER :
-			return {
-				...state,
+			return state.merge({
 				isFetching: true
-			};
+			});
 		case SETTING_FEED_LISTENER_ERROR :
-			return {
-				...state,
+			return state.merge({
 				isFetching: false,
 				error: action.error
-			};
+			});
 		case SETTING_FEED_LISTENER_SUCCESS :
-			return {
-				...state,
+			return state.merge({
 				isFetching: false,
 				error: '',
 				duckIds: action.duckIds,
 				newDucksAvailable: false
-			};
+			});
 		case ADD_NEW_DUCK_ID_TO_FEED :
-			return {
-				...state,
-				duckIds: [...state.newDucksToAdd, ...state.duckIds],
+			return state.merge({
+				newDucksToAdd: state.get('newDucksToAdd').unshift(action.duckId),
 				newDucksAvailable: true
-			};
+			});
 		case RESET_NEW_DUCKS_AVAILABLE :
-			return {
-				...state,
-				duckIds: [...state.newDucksToAdd, ...state.duckIds],
+			return state.merge({
+				duckIds: state.get('newDucksToAdd').concat(state.get('duckIds')),
 				newDucksToAdd: [],
 				newDucksAvailable: false
-			};
+			});
 		default :
 			return state
 	}
