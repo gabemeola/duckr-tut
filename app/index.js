@@ -17,7 +17,7 @@ const store = createStore(
 	)
 );
 
-const history = syncHistoryWithStore(hashHistory, store); // Creates Our Own History for implementing Redux
+const history = syncHistoryWithStore(hashHistory, store); // Creates Our Own Enhanced History for implementing Redux
 
 function checkAuth(nextState, replace) {
 	if(store.getState().users.isFetching === true) { // Don't Check Auth if fetching
