@@ -7,11 +7,11 @@ import * as usersLikesActions from 'redux/modules/usersLikes';
 class DuckContainer extends Component {
 	goToProfile(event) {
 		event.stopPropagation();
-		this.context.router.push('/' + this.props.duck.uid)
+		this.context.router.push('/' + this.props.duck.get('uid'))
 	}
 	handleClick(event) {
 		event.stopPropagation();
-		this.context.router.push('/duckDetail/' + this.props.duck.duckId)
+		this.context.router.push('/duckDetail/' + this.props.duck.get('duckId'))
 	}
 	render() {
 		return (
@@ -45,7 +45,7 @@ DuckContainer.propTypes = {
 
 function mapStateToProps({ducks, likeCount, usersLikes}, props) { // Second Argument Received is component's own props
 	return {
-		duck: ducks[props.duckId],
+		duck: ducks.get(props.duckId),
 		hideLikeCount: props.hideLikeCount,
 		hideReplyBtn: props.hideReplyBtn,
 		isLiked: usersLikes[props.duckId] === true,

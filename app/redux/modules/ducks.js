@@ -1,6 +1,7 @@
 import { saveDuck, fetchDuck } from 'helpers/api'
 import { closeModal } from "./modal";
 import { addSingleUsersDuck } from "./usersDucks";
+import { Map, fromJS } from 'immutable';
 
 const FETCHING_DUCK = 'FETCHING_DUCK';
 const FETCHING_DUCK_ERROR = 'FETCHING_DUCK_ERROR';
@@ -9,10 +10,10 @@ const ADD_DUCK = 'ADD_DUCK';
 const ADD_MULTIPLE_DUCKS = 'ADD_MULTIPLE_DUCKS';
 const REMOVE_FETCHING = 'REMOVE_FETCHING';
 
-const initialState = {
+const initialState = Map({
 	isFetching: true,
 	error: ''
-};
+});
 
 function fetchingDuck() {
 	return {
@@ -83,35 +84,30 @@ export function duckFanout(duck) { // Redux Thunk for adding new ducks
 export default function ducks(state = initialState, action) {
 	switch (action.type) {
 		case FETCHING_DUCK :
-			return {
-				...state,
+			return state.merge({
 				isFetching: true
-			};
+			});
 		case ADD_DUCK :
 		case FETCHING_DUCK_SUCCESS :
-			return {
-				...state,
+			return state.merge({
 				error: '',
 				isFetching: false,
 				[action.duck.duckId]: action.duck
-			};
+			});
 		case FETCHING_DUCK_ERROR :
-			return {
-				...state,
+			return state.merge({
 				isFetching: false,
 				error: action.error
-			};
+			});
 		case REMOVE_FETCHING :
-			return {
-				...state,
+			return state.merge({
 				error: '',
 				isFetching: false
-			};
+			});
 		case ADD_MULTIPLE_DUCKS :
-			return {
-				...state,
-				...action.ducks
-			};
+			return state.merge(
+				action.ducks
+			);
 		default :
 			return state
 	}
